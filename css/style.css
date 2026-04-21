@@ -1,0 +1,656 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+h1, h2 {
+  font-family: 'Playfair Display', serif;
+}
+
+.hero {
+  position: relative;
+  /* height: 100vh; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-img {
+  /* Убираем absolute позиционирование */
+  width: 100%;
+  height: 75vh; /* 75% высоты viewport */
+  object-fit: cover;
+  object-position: center;
+  margin-top: 0px;
+  /* z-index: 0; - больше не нужно */
+}
+
+.hero-name {
+  /* position: relative; - можно оставить или убрать, не важно */
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin: 20px 0;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-align: center;
+  /* z-index: 1; - больше не нужно */
+  order: 1; /* Делаем первым элементом */
+}
+
+.hero-img {
+  order: 2; /* Делаем вторым элементом */
+}
+
+.hero-text {
+  order: 3; /* Делаем третьим элементом */
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 30px;
+  /* Убираем все absolute позиционирование */
+  position: static;
+  left: auto;
+  transform: none;
+  z-index: auto;
+}
+
+.hero-text h1 {
+  margin-top: -20px;
+  margin-bottom: 10px; /* Уменьшите это значение по желанию */
+}
+
+
+section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 60px;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+video {
+  width: 100%;
+  border-radius: 8px;
+}
+
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: -100px;
+}
+
+.about p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 400px;
+  margin: 0; /* Убрали margin-left и margin-bottom */
+  justify-self: start; /* Выравниваем текст по левой стороне своей ячейки */
+}
+
+.about-image {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0; /* Убрали margin-left */
+  justify-self: end; /* Выравниваем картинку по правой стороне своей ячейки */
+}
+
+.carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+}
+
+.carousel-viewport {
+  position: relative;
+  width: min(100%, 760px);
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  padding-inline: calc((100% - clamp(220px, 62vw, 380px)) / 2);
+}
+
+.carousel-slide {
+  position: relative;
+  flex: 0 0 clamp(220px, 62vw, 380px);
+  aspect-ratio: 9 / 16;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #111;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  box-shadow: 0 18px 45px rgba(17, 17, 17, 0.08);
+}
+
+.carousel-slide.is-active {
+  transform: translateY(-2px) scale(1.01);
+  transition: transform 300ms ease;
+}
+
+.carousel-video {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  display: block;
+  object-fit: cover;
+  background: #111;
+}
+
+.carousel-video::-webkit-media-controls {
+  display: flex !important;
+}
+
+.carousel-video::cue {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.carousel-btn {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #111;
+}
+
+.carousel-btn:hover {
+  transform: scale(1.3);
+}
+
+
+.portfolio h2 {
+  text-align: center;
+}
+
+
+
+.services-columns {
+  display: flex;
+  justify-content: space-around;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.services-column {
+  flex: 1;
+  text-align: left;
+}
+
+.services-column h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.services-column ul {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.services-column li {
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.services-column li::before {
+  content: "• ";
+  margin-right: 8px;
+}
+
+.services-note {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.services-note em {
+  font-style: italic;
+}
+
+.services h2 {
+  text-align: center;
+}
+
+.reviews {
+  margin-top: -60px;
+}
+
+.reviews-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.reviews-viewport {
+  position: relative;
+  width: min(100%, 760px);
+  overflow: hidden;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.reviews-track {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  padding-inline: calc((100% - clamp(260px, 78vw, 760px)) / 2);
+}
+
+.review-slide {
+  position: relative;
+  flex: 0 0 clamp(260px, 78vw, 760px);
+  aspect-ratio: 3 / 4;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #f5f5f5;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  box-shadow: 0 18px 45px rgba(17, 17, 17, 0.08);
+}
+
+.review-slide.is-active {
+  transform: translateY(-2px) scale(1.01);
+  transition: transform 300ms ease;
+}
+
+.review-slide-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #ffffff 0%, #f7f4ef 100%);
+}
+
+.reviews h2 {
+  text-align: center;
+}
+
+.services {
+  margin-top: -60px;
+}
+
+.contacts {
+  text-align: center; /* Центрирование текста */
+  padding-top: 0; /* Убираем верхний отступ */
+  margin-top: -40px; /* Уменьшаем отступ сверху от предыдущей секции */
+}
+
+.contacts h2 {
+  margin-bottom: 20px; /* Отступ под заголовком */
+  font-size: 2rem; /* Размер заголовка */
+}
+
+
+
+.socials {
+  display: flex;
+  justify-content: center; /* Центрируем ссылки по горизонтали */
+  gap: 30px; /* Отступ между ссылками */
+  margin-top: 20px;
+}
+
+.socials a {
+  margin: 0; /* Убираем старые отступы */
+  text-decoration: none;
+  color: #000;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px; /* Отступ для подчеркивания */
+  font-size: 1.1rem;
+  transition: border-color 0.3s ease;
+}
+
+.socials a:hover {
+  border-color: transparent; /* Убираем подчеркивание при наведении */
+}
+
+@media (max-width: 932px) {
+  /* Общие стили для мобилок */
+  body, html {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+  
+  section {
+    padding: 40px 20px !important;
+    max-width: 100% !important;
+    overflow: hidden;
+  }
+
+  /* Hero section - адаптивная верстка */
+  .hero {
+    min-height: auto;
+    padding-bottom: 20px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .hero-name {
+    text-align: center;
+    width: 100%;
+    margin: 20px auto 10px;
+    padding: 0 15px;
+    font-size: 1.2rem;
+  }
+
+  /* Hero image - адаптивное изображение */
+  .hero-img {
+    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+    height: auto;
+    min-height: 40vh;
+    max-height: 50vh;
+    object-fit: cover;
+    object-position: center;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 10px 0 20px;
+    display: block;
+  }
+
+  /* Hero text - адаптивный */
+  .hero-text {
+    width: 100%;
+    padding: 0 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 1.5rem;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    padding: 0 10px;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+    line-height: 1.4;
+    padding: 0 10px;
+  }
+
+  /* About section - адаптивная верстка */
+  .about {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    margin-top: 0;
+    padding: 0 !important;
+    width: 100%;
+    margin-bottom: 40px; /* Добавляем отступ снизу */
+  }
+
+  /* About image - адаптивное изображение */
+  .about-image {
+    order: 1;
+    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+    height: auto;
+    min-height: 40vh;
+    max-height: 50vh;
+    object-fit: cover;
+    object-position: center;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 10px 0 20px;
+    display: block;
+  }
+
+  /* About text - адаптивный */
+  .about p {
+    order: 2;
+    text-align: left;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-size: 1rem;
+  }
+
+  /* Portfolio section - добавьте отступ сверху */
+  .portfolio {
+    margin-top: 20px; /* Добавляем отступ между about и portfolio */
+  }
+
+  .portfolio h2 {
+    margin-top: 0;
+    padding-top: 20px;
+  }
+  .carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .carousel-viewport {
+    width: 100%;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  .carousel-video {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+
+  .carousel-track {
+    gap: 12px;
+    padding-inline: calc((100% - clamp(250px, 86vw, 520px)) / 2);
+  }
+
+  .carousel-slide {
+    flex-basis: clamp(250px, 86vw, 520px);
+  }
+
+  /* Стили для кнопок */
+  .carousel-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #eee;
+    font-size: 2.5rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    position: relative;
+    margin: 0 5px;
+  }
+
+  .carousel-btn:hover {
+    background: white;
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  }
+
+  /* На мобильных листаем свайпом, поэтому скрываем стрелки */
+  .portfolio .carousel-btn,
+  .reviews .carousel-btn {
+    display: none;
+  }
+
+  .reviews {
+    margin-top: 0;
+  }
+
+  .reviews-carousel {
+    gap: 14px;
+    margin-top: 24px;
+  }
+
+  .reviews-viewport {
+    width: 100%;
+  }
+
+  .reviews-track {
+    gap: 12px;
+    padding-inline: calc((100% - clamp(250px, 86vw, 520px)) / 2);
+  }
+
+  .review-slide-image {
+    max-height: min(72vh, 560px);
+  }
+
+  .review-slide {
+    flex-basis: clamp(250px, 86vw, 520px);
+  }
+
+  .contacts {
+    padding-top: 0;
+    margin-top: -40px;
+  }
+  
+  .contacts h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+  
+  /* .phone {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  } */
+  
+  .socials {
+    gap: 20px;
+    flex-wrap: wrap; /* Если ссылки не помещаются, переносим на новую строку */
+  }
+  
+  .socials a {
+    font-size: 1rem;
+  }
+
+  /* Дополнительные адаптивные настройки для разных размеров экрана */
+  @media (max-width: 480px) {
+    .hero-img,
+    .about-image {
+      min-height: 35vh;
+      max-height: 45vh;
+    }
+    
+    .hero-name {
+      font-size: 1.1rem;
+    }
+    
+    .hero-text h1 {
+      font-size: 1.3rem;
+    }
+    
+    .about p {
+      font-size: 0.95rem;
+      padding: 0 15px;
+    }
+    
+    .portfolio {
+      margin-top: 15px;
+    }
+    .contacts {
+      padding-top: 0;
+      margin-top: -20px;
+    }
+    
+    .contacts h2 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    
+    /* .phone {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    } */
+    
+    .socials {
+      gap: 20px;
+      flex-wrap: wrap; /* Если ссылки не помещаются, переносим на новую строку */
+    }
+    
+    .socials a {
+      font-size: 1rem;
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    .hero-img,
+    .about-image {
+      min-height: 45vh;
+      max-height: 55vh;
+    }
+    
+    .portfolio {
+      margin-top: 25px;
+    }
+  }
+
+  /* Карусель и другие элементы */
+  .services-columns {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
